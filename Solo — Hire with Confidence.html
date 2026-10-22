@@ -1,0 +1,1211 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Solo — Hire with Confidence</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Solo is a trust-first services marketplace connecting customers with verified local professionals. Launching in Cork and Dublin on iOS and Android.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one dark stage; a fixed ribbon of light behind glass panels; sections alternate text-left / visual-right on a 1200px grid. */
+:root{
+  --ink:#040806;          /* stage */
+  --ink-2:#08110c;        /* panel */
+  --ink-3:#0d1912;        /* raised */
+  --line:rgba(205,255,214,.085);
+  --line-2:rgba(205,255,214,.16);
+  --fg:#ECF3EC;
+  --fg-2:#A7B6AB;
+  --fg-3:#6B7B70;
+  --solo:#5ECE35;         /* Solo brand green */
+  --solo-hi:#A4EC74;
+  --solo-deep:#0A2A1B;
+  --on-solo:#05190B;
+  --mint:#6EE7B7;
+  --font-sans:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-serif:"Instrument Serif","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r-sm:10px;--r-md:16px;--r-lg:24px;--r-xl:32px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--ink);color:var(--fg);font-family:var(--font-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--solo-hi);outline-offset:3px;border-radius:6px}
+::selection{background:var(--solo);color:var(--on-solo)}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.serif{font-family:var(--font-serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.g{color:var(--solo)}
+.mono{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:650}
+p{margin:0}
+
+/* ===== Ribbon stage ===== */
+#flow{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(2,5,3,.75) 100%);}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main,header,footer{position:relative;z-index:2}
+
+/* ===== Nav ===== */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.nav.scrolled{background:rgba(4,8,6,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:28px;height:72px}
+.logo{display:inline-flex;align-items:center;height:26px}
+.logo svg{height:100%;width:auto;display:block}
+.nav-links{display:flex;gap:26px;margin-left:12px}
+.nav-links a{font-size:14px;color:var(--fg-2);transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.status{display:inline-flex;align-items:center;gap:8px;color:var(--fg-2);font-size:11px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--solo);box-shadow:0 0 0 0 rgba(94,206,53,.6);animation:ping 2.2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(94,206,53,.55)}70%{box-shadow:0 0 0 9px rgba(94,206,53,0)}100%{box-shadow:0 0 0 0 rgba(94,206,53,0)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .25s var(--ease),background .25s,box-shadow .25s,border-color .25s;white-space:nowrap}
+.btn-sm{height:38px;padding:0 16px;font-size:14px}
+.btn-solo{background:var(--solo);color:var(--on-solo);box-shadow:0 10px 30px -10px rgba(94,206,53,.7),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-solo:hover{background:var(--solo-hi);transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(94,206,53,.85),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-ghost{background:rgba(255,255,255,.03);border-color:var(--line-2);color:var(--fg)}
+.btn-ghost:hover{border-color:rgba(164,236,116,.45);background:rgba(94,206,53,.06)}
+.btn .arr{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--on-solo);color:var(--solo);transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+.burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line-2);background:rgba(255,255,255,.03);align-items:center;justify-content:center}
+.sheet{display:none}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ===== Common section ===== */
+.sec{padding-block:clamp(84px,11vw,150px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--solo-hi);margin-bottom:22px}
+.eyebrow::before{content:"";width:18px;height:1px;background:currentColor;opacity:.7}
+.h2{font-size:clamp(34px,4.4vw,60px);line-height:1.04;letter-spacing:-.035em}
+.h2 .serif{font-size:1.08em;line-height:.9}
+.lede{font-size:clamp(16px,1.35vw,18.5px);color:var(--fg-2);max-width:56ch;line-height:1.65}
+.sec-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:56px}
+.sec-head .lede{justify-self:end}
+.glass{background:linear-gradient(180deg,rgba(14,26,18,.78),rgba(7,13,9,.86));border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 30px 60px -30px rgba(0,0,0,.7)}
+.blur{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.tag{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--line-2);font-size:11.5px;color:var(--fg-2);font-family:var(--font-mono);letter-spacing:.04em}
+.tag.solo{border-color:rgba(94,206,53,.35);color:var(--solo-hi);background:rgba(94,206,53,.08)}
+
+/* reveal: visible by default; JS only hides what's below the fold */
+.rv{transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.wait{opacity:0;transform:translateY(28px)}
+
+/* ===== Hero ===== */
+.hero{padding-top:clamp(40px,7vw,92px);padding-bottom:clamp(60px,8vw,110px)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:40px;align-items:center}
+.pill{display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;padding:7px 14px 7px 10px;border-radius:999px;background:rgba(94,206,53,.07);border:1px solid rgba(94,206,53,.22);color:var(--solo-hi);font-size:11px}
+.pill .sep{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6}
+.h1{font-size:clamp(46px,6.6vw,96px);line-height:.98;letter-spacing:-.045em;margin:26px 0 24px;font-weight:700}
+.h1 .serif{font-size:1.1em;letter-spacing:-.02em;color:var(--solo);padding-right:.04em}
+.h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.h1 .line>span{display:inline-block;animation:rise 1.1s var(--ease) both}
+.h1 .line:nth-child(2)>span{animation-delay:.12s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.hero .lede{animation:fade 1s .35s var(--ease) both}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;animation:fade 1s .5s var(--ease) both}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-meta{display:flex;flex-wrap:wrap;gap:26px;margin-top:42px;padding-top:24px;border-top:1px solid var(--line);color:var(--fg-3);animation:fade 1s .65s var(--ease) both}
+.hero-meta div{display:flex;flex-direction:column;gap:4px}
+.hero-meta b{font-family:var(--font-sans);font-size:22px;color:var(--fg);letter-spacing:-.02em;font-weight:650;text-transform:none}
+.hero-meta span{font-size:10.5px}
+
+.stage{position:relative;height:580px}
+.card{position:absolute;padding:18px;border-radius:20px}
+.float{animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.c-profile{width:300px;left:0;top:96px;animation-delay:-1s;z-index:2}
+.c-search{width:280px;right:0;top:0;animation-delay:-3s;animation-duration:8s;z-index:3}
+.c-pay{width:270px;right:0;bottom:40px;z-index:2;animation-delay:-5s;animation-duration:9s}
+.c-verify{width:212px;left:4%;bottom:0;z-index:1;animation-delay:-2s;animation-duration:7.5s}
+.card-label{display:flex;justify-content:space-between;align-items:center;color:var(--fg-3);font-size:10px;margin-bottom:14px}
+.who{display:flex;gap:12px;align-items:center}
+.av{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;font-size:15px;color:var(--on-solo);background:radial-gradient(circle at 30% 30%,#c9f7a2,#5ECE35 60%,#2f8d1a)}
+.av.b{background:radial-gradient(circle at 30% 30%,#b9f4e0,#4fd1a5 60%,#1d7a5f)}
+.av.c{background:radial-gradient(circle at 30% 30%,#e4f6b4,#a8d94a 60%,#5b8a14)}
+.who b{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:650;letter-spacing:-.01em}
+.who small{display:block;color:var(--fg-3);font-size:12.5px}
+.vbadge{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--solo);color:var(--on-solo)}
+.vbadge svg{width:10px;height:10px;stroke-width:3}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
+.kv div{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.kv small{display:block;color:var(--fg-3);font-size:10px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+.kv b{font-size:15px;font-weight:650}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.bookbar{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 6px 14px;border-radius:999px;background:rgba(94,206,53,.08);border:1px solid rgba(94,206,53,.25);font-size:13px;color:var(--solo-hi)}
+.bookbar span:last-child{padding:7px 12px;border-radius:999px;background:var(--solo);color:var(--on-solo);font-weight:650;font-size:12.5px}
+.q{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.35);border:1px solid var(--line-2);font-size:14px;min-height:48px}
+.q .ico{color:var(--solo)}
+.caret{display:inline-block;width:2px;height:16px;background:var(--solo);margin-left:1px;vertical-align:-3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.q-res{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.q-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.025);font-size:13px;transition:opacity .4s,transform .4s}
+.q-row .av{width:28px;height:28px;font-size:11px}
+.q-row em{margin-left:auto;white-space:nowrap;padding-left:6px;font-style:normal;color:var(--fg-3);font-family:var(--font-mono);font-size:11px}
+.pay-top{display:flex;gap:12px;align-items:center}
+.icobox{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(94,206,53,.12);color:var(--solo);flex:none;border:1px solid rgba(94,206,53,.25)}
+.pay-top b{display:block;font-size:14.5px}
+.pay-top small{color:var(--fg-3);font-size:12.5px}
+.track{position:relative;margin-top:16px;display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase}
+.track::before{content:"";position:absolute;left:4px;right:4px;top:-9px;height:3px;border-radius:3px;background:rgba(255,255,255,.08)}
+.track i{position:absolute;left:4px;top:-9px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--solo),var(--solo-hi));width:0;animation:fill 6s var(--ease) infinite}
+@keyframes fill{0%{width:0}35%{width:48%}70%,100%{width:calc(100% - 8px)}}
+.vlist{display:flex;flex-direction:column;gap:10px;font-size:13px}
+.vlist div{display:flex;align-items:center;gap:10px;color:var(--fg-2)}
+.vlist .vbadge{width:18px;height:18px}
+.vlist div{animation:tick 6s infinite}
+.vlist div:nth-child(2){animation-delay:.5s}.vlist div:nth-child(3){animation-delay:1s}
+@keyframes tick{0%,8%{opacity:.35}14%,100%{opacity:1}}
+
+/* ===== Verticals ===== */
+.verts{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.vert{position:relative;padding:22px 18px 20px;border-radius:20px;border:1px solid var(--line);background:rgba(8,14,10,.6);display:flex;flex-direction:column;gap:30px;min-height:178px;overflow:hidden;transition:border-color .35s,transform .35s var(--ease),background .35s}
+.vert::after{content:"";position:absolute;inset:auto -30% -60% -30%;height:120%;background:radial-gradient(closest-side,rgba(94,206,53,.28),transparent);opacity:0;transition:opacity .4s}
+.vert:hover{border-color:rgba(94,206,53,.4);transform:translateY(-4px)}
+.vert:hover::after{opacity:1}
+.vert .icobox{width:44px;height:44px;border-radius:14px}
+.vert .ico{width:22px;height:22px}
+.vert h3{font-size:16.5px;letter-spacing:-.015em;position:relative;z-index:1}
+.vert small{color:var(--fg-3);font-size:10px;display:block;margin-top:6px;position:relative;z-index:1}
+.vert.more{border-style:dashed}
+.vert.more .icobox{background:transparent;border-style:dashed;color:var(--fg-2)}
+
+/* ===== Problem / compare ===== */
+.split{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+.compare{padding:10px;border-radius:var(--r-xl)}
+.cmp-head,.cmp-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cmp-head div{padding:16px 18px;font-weight:650;font-size:15px;display:flex;align-items:center;gap:10px}
+.cmp-head div:first-child{color:var(--fg-3)}
+.cmp-head div:last-child{border-radius:16px 16px 0 0;background:linear-gradient(180deg,rgba(94,206,53,.16),rgba(94,206,53,.05));color:var(--fg)}
+.cmp-head .logo{height:18px}
+.cmp-row div{padding:14px 18px;font-size:14.5px;display:flex;gap:10px;align-items:flex-start;border-top:1px solid var(--line)}
+.cmp-row div:first-child{color:var(--fg-3)}
+.cmp-row div:first-child .ico{color:#7a5a52;width:16px;height:16px;margin-top:3px}
+.cmp-row div:last-child{background:rgba(94,206,53,.05);color:var(--fg)}
+.cmp-row div:last-child .ico{color:var(--solo);width:16px;height:16px;margin-top:3px}
+.cmp-row:last-child div:last-child{border-radius:0 0 16px 16px}
+.cmp-row{transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.compare.wait .cmp-row{opacity:0;transform:translateX(-10px)}
+.problem-points{display:flex;flex-direction:column;gap:18px;margin-top:34px}
+.pp{display:flex;gap:14px;align-items:flex-start}
+.pp b{display:block;font-weight:600;margin-bottom:2px}
+.pp p{color:var(--fg-2);font-size:15px}
+
+/* ===== Trust bento ===== */
+.rot{display:inline-grid;vertical-align:bottom;overflow:hidden;height:1.06em}
+.rot span{grid-area:1/1;transition:transform .7s var(--ease),opacity .7s;color:var(--solo)}
+.rot span:not(.on){transform:translateY(100%);opacity:0}
+.rot span.out{transform:translateY(-100%);opacity:0}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.bx{padding:26px;border-radius:var(--r-lg);display:flex;flex-direction:column;gap:22px;min-width:0;overflow:hidden;position:relative}
+.b-1{grid-column:span 7}.b-2{grid-column:span 5}.b-3{grid-column:span 5}.b-4{grid-column:span 7}
+.bx h3{font-size:21px;letter-spacing:-.02em}
+.bx p{color:var(--fg-2);font-size:15px;max-width:44ch;margin-top:8px}
+.b-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.mini{border-radius:18px;background:rgba(0,0,0,.32);border:1px solid var(--line);padding:16px;margin-top:auto}
+.steps-v{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sv{padding:12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.02);font-size:13px}
+.sv small{display:block;color:var(--fg-3);font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.sv .bar{height:4px;border-radius:4px;background:rgba(255,255,255,.07);margin-top:10px;overflow:hidden}
+.sv .bar i{display:block;height:100%;width:0;background:var(--solo);border-radius:4px;transition:width 1.4s var(--ease)}
+.in .sv .bar i{width:100%}
+.in .sv:nth-child(2) .bar i{transition-delay:.35s}.in .sv:nth-child(3) .bar i{transition-delay:.7s}
+.quote-lines{display:flex;flex-direction:column;gap:2px;font-size:14px}
+.ql{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line-2);color:var(--fg-2)}
+.ql b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+.ql.total{border:0;padding-top:12px;color:var(--fg)}
+.ql.total b{color:var(--solo-hi);font-size:20px}
+.ptrack{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative}
+.pt{padding:14px 12px;border-radius:12px;border:1px solid var(--line);font-size:13px;text-align:center;transition:all .5s var(--ease);color:var(--fg-3)}
+.pt b{display:block;font-size:13.5px;color:var(--fg-2);margin-bottom:2px}
+.pt.on{border-color:rgba(94,206,53,.5);background:rgba(94,206,53,.1);color:var(--solo-hi)}
+.pt.on b{color:var(--fg)}
+.reach{display:flex;align-items:flex-end;gap:8px;height:120px}
+.reach i{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--solo),rgba(94,206,53,.15));height:8%;transition:height 1.2s var(--ease)}
+.reach-legend{display:flex;justify-content:space-between;margin-top:10px;color:var(--fg-3);font-size:10px}
+.reach-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.reach-head b{font-size:28px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.reach-head small{color:var(--solo-hi);font-family:var(--font-mono);font-size:11px}
+
+/* ===== Morph promise ===== */
+.morph{position:relative;height:320vh}
+.morph-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.morph-panel{position:absolute;inset:0;background:radial-gradient(120% 120% at 20% 0%,#7fe050,var(--solo) 45%,#47b524);color:var(--on-solo);display:grid;place-items:center;will-change:clip-path;clip-path:inset(45% 45% 45% 45% round 28px)}
+.morph-copy{max-width:min(1000px,88vw);text-align:center;padding:0 20px}
+.morph-copy .mono{color:rgba(5,25,11,.62);display:block;margin-bottom:26px}
+.morph-text{font-size:clamp(34px,5.4vw,80px);line-height:1.04;letter-spacing:-.04em;font-weight:700}
+.morph-text .w{opacity:.16;transition:opacity .25s}
+.morph-text .w.on{opacity:1}
+.morph-text .serif{font-weight:400}
+.morph-logo{position:absolute;left:0;top:0;opacity:0;pointer-events:none;transform-origin:0 0}
+.morph-logo svg{display:block;width:100%;height:auto}
+.morph-cap{position:absolute;left:0;right:0;text-align:center;color:var(--fg-2);opacity:0}
+.morph-cap b{color:var(--fg);font-weight:600}
+
+/* ===== How it works ===== */
+.tabs{display:inline-flex;padding:5px;border-radius:999px;border:1px solid var(--line-2);background:rgba(0,0,0,.35);gap:4px;position:relative}
+.tab{height:40px;padding:0 20px;border-radius:999px;border:0;background:transparent;color:var(--fg-2);font-weight:600;font-size:14px;position:relative;z-index:1;transition:color .3s}
+.tab[aria-selected="true"]{color:var(--on-solo)}
+.tab-ind{position:absolute;top:5px;bottom:5px;left:5px;border-radius:999px;background:var(--solo);transition:transform .5s var(--ease),width .5s var(--ease)}
+.how-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+.steps{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.steps::before{content:"";position:absolute;left:0;right:0;top:27px;height:1px;background:var(--line-2)}
+.steps .fillline{position:absolute;left:0;top:27px;height:1px;width:0;background:linear-gradient(90deg,var(--solo),var(--solo-hi));box-shadow:0 0 12px var(--solo);transition:width 2.2s var(--ease)}
+.steps.in .fillline{width:100%}
+.step{position:relative;padding-top:0;display:flex;flex-direction:column;gap:16px}
+.step-n{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--ink-2);border:1px solid var(--line-2);font-family:var(--font-mono);font-size:13px;color:var(--fg-2);position:relative;z-index:1;transition:all .5s var(--ease)}
+.steps.in .step-n{border-color:rgba(94,206,53,.55);color:var(--solo-hi);box-shadow:0 0 0 6px rgba(94,206,53,.07)}
+.steps.in .step:nth-child(3) .step-n{transition-delay:.35s}.steps.in .step:nth-child(4) .step-n{transition-delay:.7s}.steps.in .step:nth-child(5) .step-n{transition-delay:1.05s}.steps.in .step:nth-child(6) .step-n{transition-delay:1.4s}
+.step-card{padding:20px;border-radius:20px;min-height:178px}
+.step h3{font-size:17px;letter-spacing:-.015em;margin-bottom:8px}
+.step p{color:var(--fg-2);font-size:14.5px}
+.panel[hidden]{display:none!important}
+.panel{animation:fade .6s var(--ease)}
+
+/* ===== Confidence split (customer/pro) ===== */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.duo-card{padding:clamp(24px,3vw,38px);border-radius:var(--r-xl);display:flex;flex-direction:column;gap:22px;min-width:0}
+.duo-card .h3{font-size:clamp(26px,2.6vw,36px);line-height:1.08;letter-spacing:-.03em}
+.ticks{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;font-size:14.5px;color:var(--fg-2)}
+.ticks div{display:flex;gap:10px;align-items:flex-start}
+.ticks .ico{color:var(--solo);width:18px;height:18px;margin-top:2px}
+.duo-card .btn{align-self:flex-start;margin-top:auto}
+
+/* ===== Dashboard ===== */
+.dash{padding:14px;border-radius:var(--r-xl)}
+.dash-bar{display:flex;align-items:center;gap:10px;padding:8px 10px 16px;color:var(--fg-3);font-size:10px}
+.dash-bar .tl{display:flex;gap:6px}.dash-bar .tl i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.1)}
+.dash-bar .sp{margin-left:auto}
+.dash-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:auto auto;gap:12px}
+.tile{padding:18px;border-radius:18px;background:rgba(0,0,0,.3);border:1px solid var(--line);min-width:0}
+.tile .mono{color:var(--fg-3);font-size:10px}
+.tile-big{grid-row:span 2;display:flex;flex-direction:column}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:190px;margin-top:auto;padding-top:20px}
+.week div{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+.week i{width:100%;border-radius:8px 8px 3px 3px;background:rgba(255,255,255,.07);height:6%;transition:height 1.2s var(--ease)}
+.week div.hl i{background:linear-gradient(180deg,var(--solo-hi),var(--solo));box-shadow:0 0 24px -4px rgba(94,206,53,.7)}
+.week span{font-family:var(--font-mono);font-size:10px;color:var(--fg-3)}
+.big-num{font-size:40px;letter-spacing:-.04em;font-weight:650;font-variant-numeric:tabular-nums;line-height:1.1;margin-top:8px}
+.big-num small{font-size:14px;color:var(--solo-hi);font-family:var(--font-mono);letter-spacing:0;margin-left:8px}
+.ring{position:relative;width:110px;height:110px;margin:12px auto 4px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9}
+.ring .bg{stroke:rgba(255,255,255,.07)}
+.ring .fg{stroke:var(--solo);stroke-linecap:round;stroke-dasharray:289;stroke-dashoffset:289;transition:stroke-dashoffset 1.8s var(--ease);filter:drop-shadow(0 0 6px rgba(94,206,53,.6))}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:24px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.next{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.next-row{display:flex;gap:10px;align-items:center;font-size:13.5px}
+.next-row .av{width:32px;height:32px;font-size:11px}
+.next-row small{display:block;color:var(--fg-3);font-size:12px}
+.next-row .tag{margin-left:auto}
+.spark{width:100%;height:56px;margin-top:10px}
+.spark path.l{fill:none;stroke:var(--solo);stroke-width:2;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 2s var(--ease)}
+.in .spark path.l{stroke-dashoffset:0}
+.spark path.a{fill:url(#sg);opacity:0;transition:opacity 1.4s .6s}
+.in .spark path.a{opacity:1}
+.stack{display:flex;margin-top:12px}
+.stack .av{width:34px;height:34px;font-size:11px;border:2px solid var(--ink-2);margin-left:-8px}
+.stack .av:first-child{margin-left:0}
+.stars{color:var(--solo-hi);letter-spacing:2px;font-size:13px;margin-top:8px}
+
+/* ===== Features ===== */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat{padding:24px;border-radius:var(--r-lg);display:flex;flex-direction:column;gap:20px;min-width:0}
+.feat h3{font-size:20px;letter-spacing:-.02em}
+.feat p{color:var(--fg-2);font-size:15px;margin-top:8px}
+.feat .mini{margin-top:0}
+.video{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:
+ radial-gradient(60% 70% at 50% 85%,rgba(94,206,53,.35),transparent 70%),
+ radial-gradient(28% 34% at 50% 40%,#2a4a35,transparent 72%),
+ linear-gradient(180deg,#0f2218,#06100a);border:1px solid var(--line);max-width:100%}
+.video .play{position:absolute;left:50%;top:46%;translate:-50% -50%;width:58px;height:58px;border-radius:50%;background:var(--solo);display:grid;place-items:center;color:var(--on-solo);box-shadow:0 0 0 10px rgba(94,206,53,.18)}
+.video .play svg{width:22px;height:22px;fill:currentColor;stroke:none;margin-left:3px}
+.video .vmeta{position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px}
+.wave{display:flex;gap:3px;align-items:center;height:18px}
+.wave i{width:3px;border-radius:2px;background:var(--solo-hi);animation:wv 1.1s ease-in-out infinite}
+.wave i:nth-child(2n){animation-delay:-.3s}.wave i:nth-child(3n){animation-delay:-.6s}.wave i:nth-child(5n){animation-delay:-.8s}
+@keyframes wv{0%,100%{height:4px}50%{height:16px}}
+.sync{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.src{display:flex;flex-direction:column;gap:8px}
+.src span{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);font-size:12.5px;color:var(--fg-2);background:rgba(255,255,255,.02)}
+.src span i{width:6px;height:6px;border-radius:50%;background:var(--solo);animation:ping 2s infinite}
+.flowline{width:40px;height:2px;background:repeating-linear-gradient(90deg,var(--solo) 0 6px,transparent 6px 12px);background-size:24px 2px;animation:dash 1s linear infinite;border-radius:2px}
+@keyframes dash{to{background-position:24px 0}}
+.dest{padding:12px;border-radius:14px;border:1px solid rgba(94,206,53,.3);background:rgba(94,206,53,.06)}
+.dest .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:10px}
+.dest .gal i{aspect-ratio:1;border-radius:6px;background:linear-gradient(135deg,rgba(94,206,53,.5),rgba(110,231,183,.15))}
+.dest .gal i:nth-child(2n){background:linear-gradient(135deg,rgba(164,236,116,.35),rgba(12,40,24,.8))}
+.dest small{font-size:11.5px;color:var(--fg-2)}
+
+/* ===== Numbers ===== */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.num{padding:34px 26px 30px;border-left:1px solid var(--line)}
+.num:first-child{border-left:0;padding-left:0}
+.num b{display:block;font-size:clamp(46px,5.6vw,80px);line-height:1;letter-spacing:-.05em;font-weight:650;font-variant-numeric:tabular-nums}
+.num b sup{font-size:.4em;vertical-align:.95em;color:var(--solo);margin-left:2px;font-weight:600}
+.num .mono{color:var(--solo-hi);display:block;margin:16px 0 8px;font-size:10.5px}
+.num p{color:var(--fg-2);font-size:14.5px;max-width:28ch}
+.num .meter{height:3px;border-radius:3px;background:rgba(255,255,255,.07);margin-top:18px;overflow:hidden}
+.num .meter i{display:block;height:100%;width:0;background:var(--solo);transition:width 1.6s var(--ease)}
+
+/* ===== Waitlist ===== */
+.wl{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;align-items:start}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:34px}
+.perk{display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(8,14,10,.55);font-size:14.5px;font-weight:500;transition:border-color .3s}
+.perk:hover{border-color:rgba(94,206,53,.35)}
+.form{padding:clamp(22px,3vw,34px);border-radius:var(--r-xl)}
+.form h3{font-size:22px;letter-spacing:-.02em;margin-bottom:6px}
+.form .sub{color:var(--fg-2);font-size:14.5px;margin-bottom:24px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label,.field .lab{font-size:13px;font-weight:600;color:var(--fg-2)}
+.field label i,.field .lab i{font-style:normal;color:var(--solo)}
+.inp{height:50px;border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.35);color:var(--fg);padding:0 16px;font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s;width:100%}
+textarea.inp{height:96px;padding:12px 16px;resize:vertical}
+select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23A4EC74' stroke-width='1.8'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+select.inp option{background:#0d1912;color:#ECF3EC}
+.inp:focus{outline:none;border-color:var(--solo);box-shadow:0 0 0 4px rgba(94,206,53,.15)}
+.inp::placeholder{color:var(--fg-3)}
+.field.err .inp{border-color:#e07a5f}
+.ferr{font-size:12.5px;color:#f0a58f;display:none}
+.field.err .ferr{display:block}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.35)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{height:40px;display:grid;place-items:center;border-radius:10px;font-size:14px;font-weight:600;color:var(--fg-2);cursor:pointer;transition:all .25s}
+.seg input:checked+label{background:var(--solo);color:var(--on-solo)}
+.seg input:focus-visible+label{outline:2px solid var(--solo-hi);outline-offset:2px}
+.count{align-self:flex-end;font-size:11px;color:var(--fg-3);font-family:var(--font-mono)}
+.fine{font-size:12.5px;color:var(--fg-3);margin-top:16px}
+.form .btn{width:100%;margin-top:18px;height:54px;font-size:16px}
+.note{display:flex;gap:8px;align-items:center;margin-top:14px;color:var(--fg-3);font-size:11px}
+.done{text-align:center;padding:30px 10px}
+.done .big{width:84px;height:84px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;background:var(--solo);color:var(--on-solo);box-shadow:0 0 0 14px rgba(94,206,53,.12),0 0 60px rgba(94,206,53,.5)}
+.done .big svg{width:38px;height:38px;stroke-width:2.6}
+.done h3{font-size:26px;margin-bottom:10px}
+.done p{color:var(--fg-2);max-width:40ch;margin:0 auto}
+.stores{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.store{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 18px 0 14px;border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.4)}
+.store small{display:block;font-size:10px;color:var(--fg-3);font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+.store b{display:block;font-size:15px;line-height:1.2}
+
+/* ===== Safety ===== */
+.safety{position:relative}
+.safety-band{border-radius:clamp(24px,3vw,40px);padding:clamp(32px,5vw,64px);background:linear-gradient(180deg,rgba(6,42,27,.78),rgba(3,22,14,.9));border:1px solid rgba(94,206,53,.18);position:relative;overflow:hidden}
+.safety-band::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;border-radius:50%;background:radial-gradient(closest-side,rgba(94,206,53,.25),transparent);pointer-events:none}
+.safe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.safe{padding:22px;border-radius:20px;background:rgba(0,0,0,.25);border:1px solid rgba(205,255,214,.09);display:flex;flex-direction:column;gap:16px;min-width:0}
+.safe h3{font-size:17.5px;letter-spacing:-.015em}
+.safe p{color:var(--fg-2);font-size:14.5px}
+
+/* ===== FAQ ===== */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.faq{border-top:1px solid var(--line-2)}
+.faq details{border-bottom:1px solid var(--line-2)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:22px 0;cursor:pointer;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;flex:none;transition:transform .4s var(--ease),background .3s,border-color .3s}
+.faq details[open] summary .pm{transform:rotate(45deg);background:var(--solo);border-color:var(--solo);color:var(--on-solo)}
+.faq .ans{color:var(--fg-2);padding:0 50px 24px 0;max-width:62ch;animation:fade .45s var(--ease)}
+.support-card{padding:22px;border-radius:20px;margin-top:30px}
+.support-card b{display:block;margin-bottom:6px}
+.support-card p{color:var(--fg-2);font-size:14.5px}
+.copyline{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.copyline code{font-family:var(--font-mono);font-size:13px;color:var(--solo-hi);user-select:all}
+.copybtn{height:28px;padding:0 10px;border-radius:8px;border:1px solid var(--line-2);background:transparent;font-size:12px;color:var(--fg-2)}
+.copybtn:hover{border-color:var(--solo);color:var(--fg)}
+
+/* ===== Final CTA ===== */
+.cta-band{position:relative;border-radius:clamp(24px,3vw,40px);padding:clamp(36px,6vw,80px);background:radial-gradient(120% 140% at 10% 0%,#8fe461,var(--solo) 45%,#3ea51f);color:var(--on-solo);overflow:hidden;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:end}
+.cta-band::after{content:"";position:absolute;right:-60px;bottom:-140px;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.18);pointer-events:none}
+.cta-band h2{font-size:clamp(36px,5vw,72px);line-height:1;letter-spacing:-.045em;font-weight:700}
+.cta-band p{font-size:17px;max-width:42ch;margin-top:18px;color:rgba(5,25,11,.78)}
+.cta-band .mono{color:rgba(5,25,11,.6)}
+.btn-ink{background:var(--on-solo);color:var(--fg);box-shadow:0 14px 30px -12px rgba(0,0,0,.6)}
+.btn-ink:hover{transform:translateY(-1px);background:#0b2614}
+.btn-ink .arr{background:var(--solo);color:var(--on-solo)}
+.cta-right{display:flex;flex-direction:column;gap:12px;align-items:flex-start;position:relative;z-index:1}
+
+/* ===== Footer ===== */
+.foot{padding-block:70px 40px;border-top:1px solid var(--line);margin-top:clamp(80px,10vw,130px);background:rgba(3,6,4,.7)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:30px}
+.foot-grid h4{margin:0 0 16px;color:var(--fg-3);font-weight:500}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.foot-grid li a{color:var(--fg-2);font-size:14.5px;transition:color .2s}
+.foot-grid li a:hover{color:var(--solo-hi)}
+.foot-brand p{color:var(--fg-2);font-size:14.5px;max-width:34ch;margin-top:18px}
+.foot-brand .status{margin-top:22px}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);color:var(--fg-3);font-size:12.5px}
+.foot-bottom p{max-width:70ch}
+
+/* ===== Responsive ===== */
+@media (max-width:1080px){
+  .nav-links{display:none}
+  .burger{display:inline-flex}
+  .hero-grid,.split,.wl,.faq-grid{grid-template-columns:1fr}
+  .stage{height:560px;max-width:620px;margin:0 auto;width:100%}
+  .verts{grid-template-columns:repeat(3,1fr)}
+  .sec-head{grid-template-columns:1fr}
+  .sec-head .lede{justify-self:start}
+  .bento .bx{grid-column:span 12}
+  .steps{grid-template-columns:1fr;gap:12px}
+  .steps::before,.steps .fillline{left:27px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .steps .fillline{height:0;transition:height 2.2s var(--ease)}
+  .steps.in .fillline{height:100%;width:1px}
+  .step{flex-direction:row;align-items:flex-start}
+  .step-card{flex:1;min-height:0}
+  .dash-grid{grid-template-columns:1fr 1fr}
+  .tile-big{grid-column:1/-1;grid-row:auto}
+  .feats{grid-template-columns:1fr}
+  .duo{grid-template-columns:1fr}
+  .nums{grid-template-columns:1fr 1fr}
+  .num:nth-child(3){border-left:0;padding-left:0}
+  .num:nth-child(n+3){border-top:1px solid var(--line)}
+  .safe-grid{grid-template-columns:1fr 1fr}
+  .cta-band{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .sheet{display:block;position:fixed;inset:0;z-index:49;background:rgba(3,7,5,.96);backdrop-filter:blur(10px);padding:calc(96px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 30px max(20px,env(safe-area-inset-left,0px));opacity:0;pointer-events:none;transition:opacity .35s}
+  .sheet a{display:block;font-size:30px;font-weight:650;letter-spacing:-.03em;padding:10px 0;border-bottom:1px solid var(--line)}
+  .sheet .btn{margin-top:28px;font-size:16px}
+  body.menu .sheet{opacity:1;pointer-events:auto}
+}
+@media (max-width:640px){
+  .status.hide-sm{display:none}
+  .nav-right .btn-solo{display:none}
+  .verts{grid-template-columns:1fr 1fr}
+  .stage{height:auto;display:flex;flex-direction:column;gap:12px}
+  .card{position:relative;inset:auto!important;width:100%!important}
+  .c-verify,.c-pay{display:none}
+  .kv{grid-template-columns:1fr 1fr}
+  .steps-v{grid-template-columns:1fr}
+  .ptrack{grid-template-columns:1fr}
+  .dash-grid{grid-template-columns:1fr}
+  .ticks{grid-template-columns:1fr}
+  .cmp-row div,.cmp-head div{padding:12px;font-size:13.5px}
+  .nums{grid-template-columns:1fr}
+  .num{border-left:0!important;padding-left:0!important;border-top:1px solid var(--line)}
+  .num:first-child{border-top:0}
+  .perks{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .safe-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .faq .ans{padding-right:0}
+  .sync{grid-template-columns:1fr;justify-items:stretch}
+  .flowline{width:2px;height:28px;justify-self:center;background:repeating-linear-gradient(180deg,var(--solo) 0 6px,transparent 6px 12px)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv.wait{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+  .morph{height:auto}
+  .morph-sticky{position:relative;height:auto;padding-block:60px}
+  .morph-panel{position:relative;clip-path:none!important;border-radius:32px;margin:0 20px;padding:80px 0}
+  .morph-text .w{opacity:1}
+}
+</style>
+
+<canvas id="flow" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="solo-logo" viewBox="0 0 600 240"><path fill="currentColor" fill-rule="evenodd" d="M205.8 239.0C174.9 233.4 150.8 212.1 142.4 183.0C139.5 172.9 139.7 151.0 142.8 141.0C153.8 105.8 183.1 84.0 219.5 84.0C255.5 84.0 286.2 106.9 297.2 142.0C300.8 153.7 300.5 175.3 296.6 186.5C288.0 210.7 270.5 227.9 246.0 236.1C237.6 238.9 234.9 239.3 223.5 239.6C216.3 239.8 208.4 239.5 205.8 239.0ZM359.0 239.0C341.0 236.2 331.8 227.8 326.3 209.2C324.7 204.1 324.5 194.4 324.2 111.0C324.0 60.1 324.2 16.6 324.5 14.3C325.8 5.2 332.2 1.1 346.4 0.3C362.7 -0.6 370.6 2.0 374.5 9.6C376.4 13.4 376.5 16.0 377.0 100.8C377.5 185.8 377.6 188.2 379.4 189.6C380.5 190.4 382.9 191.0 384.7 191.0C399.4 191.0 404.6 198.2 403.8 217.5C403.3 229.7 401.2 234.7 395.3 237.6C390.9 239.7 368.8 240.5 359.0 239.0ZM482.0 239.4C440.6 231.2 414.5 201.0 414.6 161.5C414.8 117.1 449.0 84.0 494.7 84.0C531.1 84.0 559.9 105.5 570.6 140.5C574.5 153.2 574.7 174.6 571.2 186.0C563.2 211.4 543.7 230.5 518.5 237.5C512.6 239.2 487.4 240.4 482.0 239.4ZM45.8 238.0C24.6 234.6 3.6 224.0 1.0 215.2C-0.5 210.5 1.9 203.5 8.2 194.1C17.4 180.2 23.1 178.7 38.4 185.9C53.3 192.8 64.1 194.7 71.5 191.6C76.1 189.7 76.2 186.7 71.8 184.4C70.1 183.5 62.8 181.3 55.6 179.5C34.4 174.2 25.9 170.0 17.1 160.5C5.9 148.3 3.1 127.2 10.7 111.1C14.3 103.6 22.9 95.1 31.0 91.2C51.3 81.3 81.6 81.7 102.7 92.0C117.3 99.2 119.0 104.1 112.0 118.7C105.0 133.1 99.7 134.8 81.7 128.0C68.3 122.9 57.9 122.3 54.1 126.4C48.4 132.4 56.0 137.0 78.5 141.1C110.4 146.8 125.1 161.4 125.3 187.5C125.5 210.3 111.9 228.1 88.6 235.6C81.7 237.9 78.4 238.3 66.0 238.6C58.0 238.7 48.9 238.5 45.8 238.0ZM235.2 192.3C264.3 179.3 260.0 138.1 228.7 129.8C196.2 121.2 171.5 159.4 193.7 184.0C204.1 195.5 220.7 198.9 235.2 192.3ZM506.5 187.1C511.3 185.0 518.5 177.4 520.7 172.2C524.4 163.4 521.8 150.1 514.8 143.0C503.8 131.6 486.5 131.3 475.4 142.4C453.7 164.2 478.3 199.6 506.5 187.1Z"/><path fill="#5ECE35" d="M577.0 237.9C564.5 232.9 563.3 214.3 575.0 208.2C591.3 199.9 607.5 219.2 595.6 232.8C590.7 238.4 583.4 240.4 577.0 237.9ZM212.4 195.0C193.7 191.1 182.1 173.0 186.4 154.7C190.8 135.7 209.4 124.7 228.7 129.8C254.2 136.6 263.4 166.0 245.8 184.6C237.6 193.2 224.0 197.5 212.4 195.0Z"/></symbol>
+    <linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5ECE35" stop-opacity=".35"/><stop offset="1" stop-color="#5ECE35" stop-opacity="0"/></linearGradient>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Solo home"><svg viewBox="0 0 600 240" style="color:#fff"><use href="#solo-logo"/></svg></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#customers">For Customers</a>
+      <a href="#professionals">For Professionals</a>
+      <a href="#trust">Trust</a>
+      <a href="#faqs">FAQs</a>
+    </nav>
+    <div class="nav-right">
+      <span class="status mono hide-sm"><span class="dot"></span>Waitlist open</span>
+      <a class="btn btn-solo btn-sm" href="#waitlist">Join Waitlist</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="sheet" id="sheet">
+  <a href="#how">How it works</a><a href="#customers">For Customers</a><a href="#professionals">For Professionals</a><a href="#trust">Trust</a><a href="#faqs">FAQs</a>
+  <a class="btn btn-solo" href="#waitlist">Join the waitlist</a>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" data-flow="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill mono"><span class="dot"></span>Coming soon: iOS &amp; Android<span class="sep"></span>Launching in Cork &amp; Dublin</span>
+      <h1 class="h1"><span class="line"><span>One app.</span></span><span class="line"><span><span class="serif">Multiple</span> services.</span></span></h1>
+      <p class="lede">Solo is a unified marketplace for in-person services, bringing customers and verified professionals together on one platform.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solo" href="#waitlist">Join the waitlist <span class="arr"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="btn btn-ghost" href="#perks">See exclusive perks</a>
+      </div>
+      <div class="hero-meta mono">
+        <div><b>0%</b><span>Fees for early adopters</span></div>
+        <div><b>5</b><span>Launch verticals</span></div>
+        <div><b>2</b><span>Launch cities</span></div>
+      </div>
+    </div>
+
+    <div class="stage" id="stage" aria-label="Preview of the Solo app">
+      <div class="card c-search glass blur float">
+        <div class="card-label mono"><span>AI search</span><span class="tag solo">Live</span></div>
+        <div class="q"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l1.8 4.9L19 9.7l-5.2 1.8L12 16.5l-1.8-5L5 9.7l5.2-1.8z"/><path d="M19 3v4M17 5h4"/></svg><span><span id="qtext"></span><span class="caret"></span></span></div>
+        <div class="q-res" id="qres"></div>
+      </div>
+
+      <div class="card c-profile glass blur float">
+        <div class="card-label mono"><span>Profile preview</span><span>Sample</span></div>
+        <div class="who"><span class="av">NO</span><div><b>Niamh O'Sullivan <span class="vbadge" title="Verified"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></b><small>Make-up artist · Cork</small></div></div>
+        <div class="kv"><div><small>From</small><b>€65</b></div><div><small>Video intro</small><b>0:48</b></div></div>
+        <div class="chips"><span class="tag">Bridal</span><span class="tag">Editorial</span><span class="tag">Events</span></div>
+        <div class="bookbar"><span>Sat · 10:00</span><span>Book</span></div>
+      </div>
+
+      <div class="card c-verify glass blur float">
+        <div class="card-label mono"><span>Verification</span></div>
+        <div class="vlist">
+          <div><span class="vbadge"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Identity matched</div>
+          <div><span class="vbadge"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Certificates checked</div>
+          <div><span class="vbadge"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Links verified</div>
+        </div>
+      </div>
+
+      <div class="card c-pay glass blur float">
+        <div class="pay-top"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>Payment protected</b><small>€65 held until the job's done</small></div></div>
+        <div class="track" style="margin-top:28px"><i></i><span>Booked</span><span>Held</span><span>Released</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERTICALS -->
+<section class="sec" style="padding-top:20px" data-flow="verts">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow mono">Initial service verticals</span><h2 class="h2">Top-tier pros across <span class="serif g">high-demand</span> categories.</h2></div>
+      <p class="lede">Start with the services people book most, each one with verified profiles, upfront pricing and protected payments.</p>
+    </div>
+    <div class="verts">
+      <div class="vert rv"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M21.4 10.9a1 1 0 0 0 0-1.8l-8.6-3.9a2 2 0 0 0-1.6 0L2.6 9.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.6 0z"/><path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span><div><h3>Academic Tutors</h3><small class="mono">1:1 · In person</small></div></div>
+      <div class="vert rv"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M5 17l.8 2.2L8 20l-2.2.8L5 23l-.8-2.2L2 20l2.2-.8zM19 14l.6 1.4L21 16l-1.4.6L19 18l-.6-1.4L17 16l1.4-.6z"/></svg></span><div><h3>Cleaners</h3><small class="mono">Homes · End of tenancy</small></div></div>
+      <div class="vert rv"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="m11 10 3 3"/><path d="M6.5 21A3.5 3.5 0 1 0 3 17.5a2.6 2.6 0 0 1-.7 1.8A1 1 0 0 0 3 21z"/><path d="M10 17 21.4 5.6a1 1 0 0 0-3-3L7 14"/></svg></span><div><h3>Make-up Artists</h3><small class="mono">Bridal · Events</small></div></div>
+      <div class="vert rv"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M6 5v14M18 5v14M3 9v6M21 9v6M6 12h12"/></svg></span><div><h3>Personal Trainers</h3><small class="mono">1:1 · Outdoor · Studio</small></div></div>
+      <div class="vert rv"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg></span><div><h3>Photographers</h3><small class="mono">Portrait · Events</small></div></div>
+      <div class="vert more rv"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></span><div><h3>And many more</h3><small class="mono">Coming soon</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / COMPARE -->
+<section class="sec" data-flow="problem">
+  <div class="wrap split">
+    <div class="rv">
+      <span class="eyebrow mono">Less scrolling. More certainty.</span>
+      <h2 class="h2">Most marketplaces run on <span class="serif g">guesswork.</span></h2>
+      <p class="lede" style="margin-top:22px">Most platforms focus on volume over value. Solo focuses on the quality of your decision, with complete transparency on who you hire and what to expect.</p>
+      <div class="problem-points">
+        <div class="pp"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg></span><div><b>See more than a name and a price</b><p>Profiles, ratings, video intros and past work before you choose.</p></div></div>
+        <div class="pp"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6"/></svg></span><div><b>No bidding wars</b><p>Upfront pricing and an agreed scope before the work begins.</p></div></div>
+      </div>
+    </div>
+    <div class="compare glass rv" id="compare">
+      <div class="cmp-head"><div>Typical marketplace</div><div><span class="logo"><svg viewBox="0 0 600 240" style="color:#fff"><use href="#solo-logo"/></svg></span></div></div>
+      <div class="cmp-row"><div><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Unclear, generic listings</div><div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Verified profiles &amp; portfolios</div></div>
+      <div class="cmp-row"><div><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Bidding wars on price</div><div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Upfront pricing &amp; clear scope</div></div>
+      <div class="cmp-row"><div><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Unreliable review scores</div><div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Authentic client reviews</div></div>
+      <div class="cmp-row"><div><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Off-platform payment risks</div><div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Secure in-app payments</div></div>
+      <div class="cmp-row"><div><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Friction &amp; guesswork</div><div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Direct messaging &amp; clear terms</div></div>
+      <div class="cmp-row"><div><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Limited help when issues arise</div><div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Dedicated live support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BENTO -->
+<section class="sec" id="trust" data-flow="trust">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow mono">Trust, built in</span><h2 class="h2">Hire with <span class="serif rot" id="rot"><span class="on">confidence,</span><span>clarity,</span><span>reliability,</span></span><br>work with trust.</h2></div>
+      <p class="lede">Every booking on Solo starts with the same four guarantees, whether you're hiring or being hired.</p>
+    </div>
+    <div class="bento">
+      <article class="bx b-1 glass rv io">
+        <div class="b-top"><div><h3>Verified profiles</h3><p>See more than a name and a price. Review profiles, ratings and work history before selection.</p></div><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span></div>
+        <div class="mini"><div class="steps-v">
+          <div class="sv"><small>Check 1</small>Identity matching<div class="bar"><i></i></div></div>
+          <div class="sv"><small>Check 2</small>Certificates<div class="bar"><i></i></div></div>
+          <div class="sv"><small>Check 3</small>Link verification<div class="bar"><i></i></div></div>
+        </div></div>
+      </article>
+      <article class="bx b-2 glass rv">
+        <div class="b-top"><div><h3>Clear expectations</h3><p>Align on scope, upfront pricing and timelines before the work begins.</p></div></div>
+        <div class="mini quote-lines">
+          <div class="ql"><span>Deep clean · 2-bed apartment</span><b>€90</b></div>
+          <div class="ql"><span>Oven &amp; fridge add-on</span><b>€25</b></div>
+          <div class="ql"><span>Arrival window</span><b>Sat 9–10am</b></div>
+          <div class="ql total"><span>Agreed upfront</span><b>€115</b></div>
+        </div>
+      </article>
+      <article class="bx b-3 glass rv">
+        <div class="b-top"><div><h3>Secure bookings</h3><p>Protected payments, instant confirmation and cancellation coverage, backed by clear terms and support.</p></div></div>
+        <div class="mini"><div class="ptrack" id="ptrack">
+          <div class="pt on"><b>Confirmed</b>Instantly</div>
+          <div class="pt"><b>Protected</b>Payment held</div>
+          <div class="pt"><b>Released</b>Job complete</div>
+        </div></div>
+      </article>
+      <article class="bx b-4 glass rv io" id="reach">
+        <div class="b-top"><div><h3>Direct customer reach</h3><p>Build your reputation directly. Set your own rates and schedules, and grow your client base without heavy marketing costs.</p></div><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></span></div>
+        <div class="mini">
+          <div class="reach-head"><span class="mono" style="color:var(--fg-3);font-size:10px">Profile views · sample week</span><span><b data-count="1284">0</b> <small>+38%</small></span></div>
+          <div class="reach"><i data-h="22"></i><i data-h="30"></i><i data-h="26"></i><i data-h="44"></i><i data-h="40"></i><i data-h="58"></i><i data-h="52"></i><i data-h="70"></i><i data-h="66"></i><i data-h="84"></i><i data-h="78"></i><i data-h="96"></i></div>
+          <div class="reach-legend mono"><span>Mon</span><span>Sun</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MORPH PROMISE -->
+<section class="morph" id="promise" data-flow="morph" aria-label="Our promise">
+  <div class="morph-sticky" id="morphSticky">
+    <div class="morph-panel" id="morphPanel">
+      <div class="morph-copy" id="morphCopy">
+        <span class="mono">The Solo promise</span>
+        <p class="morph-text" id="morphText">Know who's coming, what it costs and when it's done, <span class="serif">before</span> anyone knocks on your door.</p>
+      </div>
+    </div>
+    <div class="morph-logo" id="morphLogo" aria-hidden="true"><svg viewBox="0 0 600 240" style="color:#fff"><use href="#solo-logo"/></svg></div>
+    <p class="morph-cap mono" id="morphCap">One app. <b>Every service you trust.</b></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how" data-flow="how">
+  <div class="wrap">
+    <div class="how-head rv">
+      <div><span class="eyebrow mono">How it works</span><h2 class="h2">Covered every step,<br>from <span class="serif g">search</span> to service.</h2></div>
+      <div class="tabs" role="tablist" id="tabs">
+        <span class="tab-ind" id="tabInd"></span>
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-cust" id="t-cust">For Customers</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-pro" id="t-pro">For Professionals</button>
+      </div>
+    </div>
+    <div class="panel" id="p-cust" role="tabpanel" aria-labelledby="t-cust">
+      <ol class="steps io" style="list-style:none;margin:0;padding:0"><span class="fillline"></span>
+        <li class="step"><span class="step-n">01</span><div class="step-card glass"><h3>Explore local pros</h3><p>Browse top-rated, verified independent professionals in your area.</p></div></li>
+        <li class="step"><span class="step-n">02</span><div class="step-card glass"><h3>Compare &amp; verify</h3><p>Review transparent pricing, past work portfolios and authentic client ratings.</p></div></li>
+        <li class="step"><span class="step-n">03</span><div class="step-card glass"><h3>Book with protection</h3><p>Choose a time, agree the scope upfront and lock in a protected payment.</p></div></li>
+        <li class="step"><span class="step-n">04</span><div class="step-card glass"><h3>Clear, direct contact</h3><p>Message directly, get real-time updates and manage job details.</p></div></li>
+        <li class="step"><span class="step-n">05</span><div class="step-card glass"><h3>Review &amp; repeat</h3><p>Share verified feedback and rebook your favourite pros with one tap.</p></div></li>
+      </ol>
+    </div>
+    <div class="panel" id="p-pro" role="tabpanel" aria-labelledby="t-pro" hidden>
+      <ol class="steps io" style="list-style:none;margin:0;padding:0"><span class="fillline"></span>
+        <li class="step"><span class="step-n">01</span><div class="step-card glass"><h3>Build your profile</h3><p>Add a video intro, your portfolio and services, or import them from your socials in one click.</p></div></li>
+        <li class="step"><span class="step-n">02</span><div class="step-card glass"><h3>Get verified</h3><p>Complete identity, certificate and link checks to earn your verified badge.</p></div></li>
+        <li class="step"><span class="step-n">03</span><div class="step-card glass"><h3>Set rates &amp; hours</h3><p>You choose your prices, availability and cancellation terms.</p></div></li>
+        <li class="step"><span class="step-n">04</span><div class="step-card glass"><h3>Win bookings</h3><p>Customers find you through search and AI matching, then book with scope agreed.</p></div></li>
+        <li class="step"><span class="step-n">05</span><div class="step-card glass"><h3>Get paid &amp; grow</h3><p>Secure payouts, authentic reviews and repeat clients from one dashboard.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMERS / PROFESSIONALS -->
+<section class="sec" style="padding-top:0" data-flow="duo">
+  <div class="wrap duo">
+    <article class="duo-card glass rv" id="customers">
+      <span class="tag solo mono" style="align-self:flex-start">For customers</span>
+      <h2 class="h3">Book services with <span class="serif g">complete</span> confidence.</h2>
+      <p class="lede">Solo gives you all the details upfront, with zero guesswork.</p>
+      <div class="ticks">
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Verified professional profiles</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Ratings and reviews</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Photos and videos of past work</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Clear cancellation policy</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Secure booking and payment</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Support when needed</div>
+      </div>
+      <a class="btn btn-solo" href="#waitlist" data-role="Customer">Join the customer waitlist</a>
+    </article>
+    <article class="duo-card glass rv" id="professionals">
+      <span class="tag solo mono" style="align-self:flex-start">For professionals</span>
+      <h2 class="h3">Build a reputation <span class="serif g">that lasts.</span></h2>
+      <p class="lede">Stand out through quality, reliability and verified customer experiences.</p>
+      <div class="ticks">
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Visual portfolio &amp; past work</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Authentic client reviews</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Win high-value clients</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>All-in-one pro dashboard</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Secure payments, fast payouts</div>
+        <div><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Clear cancellation policy</div>
+      </div>
+      <a class="btn btn-ghost" href="#waitlist" data-role="Professional">Join the professional waitlist</a>
+    </article>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="sec" data-flow="dash">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow mono">All-in-one dashboard</span><h2 class="h2">A <span class="serif g">Saturday,</span> seen from Solo.</h2></div>
+      <p class="lede">Bookings, payouts and reviews in one place, so professionals spend the day on the work and not the admin.</p>
+    </div>
+    <div class="dash glass rv io" id="dash">
+      <div class="dash-bar mono"><span class="tl"><i></i><i></i><i></i></span><span>Pro dashboard</span><span class="sp tag">Sample data</span></div>
+      <div class="dash-grid">
+        <div class="tile tile-big">
+          <div class="mono">Bookings this week</div>
+          <div class="big-num"><span data-count="23">0</span><small>+6 vs last week</small></div>
+          <div class="week" id="week">
+            <div><i data-h="34"></i><span>M</span></div><div><i data-h="48"></i><span>T</span></div><div><i data-h="40"></i><span>W</span></div><div><i data-h="62"></i><span>T</span></div><div><i data-h="74"></i><span>F</span></div><div class="hl"><i data-h="96"></i><span>S</span></div><div><i data-h="30"></i><span>S</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="mono">Profile strength</div>
+          <div class="ring"><svg viewBox="0 0 110 110"><circle class="bg" cx="55" cy="55" r="46"/><circle class="fg" id="ringfg" cx="55" cy="55" r="46"/></svg><b><span><span data-count="82">0</span>%</span></b></div>
+        </div>
+        <div class="tile">
+          <div class="mono">Payouts</div>
+          <div class="big-num" style="font-size:32px">€<span data-count="1460">0</span></div>
+          <svg class="spark" viewBox="0 0 200 56" preserveAspectRatio="none"><path class="a" d="M0 48 L25 42 L50 44 L75 32 L100 34 L125 22 L150 26 L175 12 L200 8 L200 56 L0 56Z"/><path class="l" d="M0 48 L25 42 L50 44 L75 32 L100 34 L125 22 L150 26 L175 12 L200 8"/></svg>
+        </div>
+        <div class="tile">
+          <div class="mono">Next up</div>
+          <div class="next">
+            <div class="next-row"><span class="av b">CM</span><div>Ciara M.<small>Bridal trial · 10:00</small></div><span class="tag solo">Paid</span></div>
+            <div class="next-row"><span class="av c">RD</span><div>Rory D.<small>Event make-up · 14:30</small></div><span class="tag solo">Paid</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="mono">New reviews</div>
+          <div class="stack"><span class="av">AK</span><span class="av b">SL</span><span class="av c">JB</span><span class="av">EF</span></div>
+          <div class="stars" aria-label="4.9 out of 5">★★★★★ <span style="color:var(--fg-2);letter-spacing:0;font-family:var(--font-mono);font-size:12px">4.9 avg</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec" data-flow="feats">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow mono">Designed for today's marketplace</span><h2 class="h2">Features that make the <span class="serif g">right choice</span> obvious.</h2></div>
+      <p class="lede">Powerful app features engineered to streamline bookings, enhance transparency and simplify growth.</p>
+    </div>
+    <div class="feats">
+      <article class="feat glass rv">
+        <div class="mini">
+          <div class="q" style="font-size:13.5px"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span id="aiq">Personal trainer, early mornings</span></div>
+          <div class="q-res"><div class="q-row"><span class="av b">DK</span>Darragh K. · Trainer<em>0.8 km</em></div><div class="q-row"><span class="av">SF</span>Sinéad F. · Trainer<em>1.4 km</em></div></div>
+        </div>
+        <div><span class="tag solo mono">AI powered</span><h3 style="margin-top:14px">AI integration</h3><p>Describe what you need in plain words and Solo finds the right local professionals for you.</p></div>
+      </article>
+      <article class="feat glass rv">
+        <div class="video"><span class="play"><svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></span><div class="vmeta"><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="mono" style="font-size:10.5px">Meet Niamh · 0:48</span></div></div>
+        <div><span class="tag solo mono">Transparency</span><h3 style="margin-top:14px">Video profiles</h3><p>Professionals upload a short video introduction (under one minute) that brings their skills and personality to life.</p></div>
+      </article>
+      <article class="feat glass rv">
+        <div class="mini"><div class="sync">
+          <div class="src"><span><i></i>Instagram</span><span><i></i>TikTok</span><span><i></i>Portfolio link</span></div>
+          <span class="flowline"></span>
+          <div class="dest"><small class="mono">Imported to Solo</small><div class="gal"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div></div>
+        <div><span class="tag solo mono">Seamless sync</span><h3 style="margin-top:14px">Social media sync</h3><p>Import work portfolios, social links and galleries with a single click.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="sec" data-flow="nums">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:46px"><span class="eyebrow mono">Why use Solo?</span><h2 class="h2">Numbers we'd <span class="serif g">rather</span> show than tell.</h2></div>
+    <div class="nums io" id="nums">
+      <div class="num"><b><span data-count="0">0</span><sup>%</sup></b><span class="mono">Fair &amp; transparent</span><p>Fees and commissions for early adopters. No hidden charges.</p><div class="meter"><i data-w="6"></i></div></div>
+      <div class="num"><b><span data-count="3">0</span></b><span class="mono">Book with confidence</span><p>Verification checks before a pro earns their badge.</p><div class="meter"><i data-w="60"></i></div></div>
+      <div class="num"><b>&lt;<span data-count="1">0</span><sup>min</sup></b><span class="mono">See before you book</span><p>Video intros so you meet your pro before they arrive.</p><div class="meter"><i data-w="40"></i></div></div>
+      <div class="num"><b><span data-count="1">0</span><sup>app</sup></b><span class="mono">End-to-end convenience</span><p>From search to delivery without leaving the app.</p><div class="meter"><i data-w="100"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="sec" id="waitlist" data-flow="wait">
+  <div class="wrap wl">
+    <div class="rv" id="perks">
+      <span class="pill mono"><span class="dot"></span>Coming soon: iOS &amp; Android<span class="sep"></span>Cork &amp; Dublin first</span>
+      <h2 class="h2" style="margin-top:24px">Be first in <span class="serif g">line.</span></h2>
+      <p class="lede" style="margin-top:18px">Join the waitlist for priority early access, exclusive launch perks and the launch update before anyone else.</p>
+      <div class="perks">
+        <div class="perk"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span>0% fees &amp; commissions</div>
+        <div class="perk"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span>Free in-app &amp; cashback credits</div>
+        <div class="perk"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span>Entry into weekly giveaways</div>
+        <div class="perk"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></span>Profile featured higher</div>
+        <div class="perk"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg></span>Early adopter badge</div>
+        <div class="perk"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6"/></svg></span>Discounts for existing clients</div>
+      </div>
+      <div class="stores">
+        <span class="store"><svg class="ico" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><small>Coming soon on</small><b>App Store</b></span></span>
+        <span class="store"><svg class="ico" viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z"/></svg><span><small>Coming soon on</small><b>Google Play</b></span></span>
+      </div>
+    </div>
+
+    <div class="form glass blur rv" id="formCard">
+      <form id="wlForm" novalidate>
+        <h3>Join the waitlist &amp; enjoy exclusive perks</h3>
+        <p class="sub">No spam. Just launch updates and early incentives.</p>
+        <div class="fgrid">
+          <div class="field"><label for="f-name">Full name <i>*</i></label><input class="inp" id="f-name" name="name" autocomplete="name" placeholder="Aoife Murphy"><span class="ferr">Enter your full name.</span></div>
+          <div class="field"><label for="f-email">Email address <i>*</i></label><input class="inp" id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"><span class="ferr">Enter a valid email, like name@example.com.</span></div>
+          <div class="field full"><span class="lab" id="role-lab">I am a</span>
+            <div class="seg" role="radiogroup" aria-labelledby="role-lab">
+              <input type="radio" name="role" id="r-c" value="Customer" checked><label for="r-c">Customer</label>
+              <input type="radio" name="role" id="r-p" value="Professional"><label for="r-p">Professional</label>
+              <input type="radio" name="role" id="r-b" value="Both"><label for="r-b">Both</label>
+            </div>
+          </div>
+          <div class="field full"><label for="f-city">Location <i>*</i></label><select class="inp" id="f-city" name="city"><option value="">Select city</option><option>Cork</option><option>Dublin</option></select><span class="ferr">Choose Cork or Dublin.</span></div>
+          <div class="field full"><label for="f-msg">Optional message</label><textarea class="inp" id="f-msg" name="msg" maxlength="1000" placeholder="Tell us what you'd book first, or the service you offer."></textarea><span class="count" id="count">0/1000</span></div>
+        </div>
+        <p class="fine">By submitting this form, you acknowledge that your personal data will be processed in accordance with our Privacy Policy.</p>
+        <button class="btn btn-solo" type="submit">Notify me when Solo launches</button>
+        <div class="note mono"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Design preview · submissions are not sent yet</div>
+      </form>
+      <div class="done" id="done" hidden>
+        <div class="big"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>You're on the list.</h3>
+        <p id="doneMsg">We'll email you the moment Solo launches.</p>
+        <button class="btn btn-ghost" style="margin-top:24px;width:auto" id="again" type="button">Add another person</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="sec safety" data-flow="safety" style="padding-top:0">
+  <div class="wrap">
+    <div class="safety-band rv">
+      <span class="eyebrow mono">Safety &amp; protection</span>
+      <h2 class="h2" style="max-width:16ch">Our safety <span class="serif g">features.</span></h2>
+      <p class="lede" style="margin-top:18px">Tools and standards that prioritise transparency, protection and complete security for everyone.</p>
+      <div class="safe-grid">
+        <div class="safe"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg></span><h3>Identity verification</h3><p>Every professional passes multi-step checks (certificates, identity matching and link verification) before receiving their verified badge.</p></div>
+        <div class="safe"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h3>Secure payments</h3><p>Payments are processed securely. Payouts are released according to booking status and Solo's terms.</p></div>
+        <div class="safe"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9 11.5h6M9 8.5h4"/></svg></span><h3>Dispute support</h3><p>If things don't go to plan, our dedicated support team steps in to help resolve booking or communication disputes.</p></div>
+        <div class="safe"><span class="icobox"><svg class="ico" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"/></svg></span><h3>Data protection</h3><p>Files, messages and booking details are fully encrypted. We never sell your details to advertisers.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faqs" data-flow="faq">
+  <div class="wrap faq-grid">
+    <div class="rv">
+      <span class="eyebrow mono">FAQs</span>
+      <h2 class="h2">Questions, <span class="serif g">answered.</span></h2>
+      <div class="support-card glass">
+        <b>Still need help?</b>
+        <p>Our support team is here for customers and professionals.</p>
+        <div class="copyline"><code id="mail">Support@joinsolo.app</code><button class="copybtn" data-copy="Support@joinsolo.app" type="button">Copy</button></div>
+        <div class="copyline"><code>+353 85 785 0173</code><button class="copybtn" data-copy="+353857850173" type="button">Copy</button></div>
+      </div>
+    </div>
+    <div class="faq rv">
+      <details open><summary>Is Solo available now?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Solo is preparing to launch on iOS and Android soon. Join the waitlist now and we'll notify you when the app is available.</p></details>
+      <details><summary>What is Solo?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Solo is a trust-first marketplace built to connect customers with skilled local professionals. With clear profiles, secure bookings and honest reviews, every experience is a reliable one.</p></details>
+      <details><summary>Who is Solo for?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Built as a trust-based community for everyone, Solo bridges the gap in local hiring. We help customers choose services with total confidence, and help professionals build the visibility, reputation and long-term client relationships they need to thrive.</p></details>
+      <details><summary>What services will be available?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Solo is designed for a wide range of local and professional services, including education, creative arts, beauty, health and care, domestic help, and maintenance and repair.</p></details>
+      <details><summary>How does Solo help customers choose?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Customers can review profiles, ratings, service details, past work and clear expectations before booking.</p></details>
+      <details><summary>Can professionals join before launch?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Yes. Professionals can register interest now and be part of the early Solo community.</p></details>
+      <details><summary>Will Solo be on iPhone and Android?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Yes. Solo is planned for both iOS and Android.</p></details>
+      <details><summary>When does Solo launch?<span class="pm"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="ans">Solo launches first in Cork and Dublin. Waitlist members get the launch date before anyone else.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section data-flow="cta">
+  <div class="wrap">
+    <div class="cta-band rv">
+      <div style="position:relative;z-index:1">
+        <span class="mono">Cork &amp; Dublin · Coming soon</span>
+        <h2 style="margin-top:18px">Hire with confidence.<br>Work with <span class="serif">trust.</span></h2>
+        <p>Get priority access, 0% fees and an early adopter badge when Solo opens its doors.</p>
+      </div>
+      <div class="cta-right">
+        <a class="btn btn-ink" href="#waitlist">Join the waitlist <span class="arr"><svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo" style="height:30px"><svg viewBox="0 0 600 240" style="color:#fff"><use href="#solo-logo"/></svg></span>
+        <p>Solo is a unified marketplace for in-person services, bringing customers and professionals together on one platform.</p>
+        <span class="status mono"><span class="dot"></span>Waitlist open · Cork &amp; Dublin</span>
+      </div>
+      <div><h4 class="mono">Navigation</h4><ul><li><a href="#how">How it works</a></li><li><a href="#customers">For Customers</a></li><li><a href="#professionals">For Professionals</a></li><li><a href="#trust">Trust</a></li></ul></div>
+      <div><h4 class="mono">Legal</h4><ul><li><a href="https://joinsolo.app/privacy" target="_blank" rel="noopener">Privacy Policy</a></li><li><a href="https://joinsolo.app/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a></li><li><a href="https://joinsolo.app/refunds" target="_blank" rel="noopener">Refund &amp; Cancellation</a></li><li><a href="https://joinsolo.app/acceptable-use" target="_blank" rel="noopener">Acceptable Use</a></li><li><a href="https://joinsolo.app/community" target="_blank" rel="noopener">Community Guidelines</a></li></ul></div>
+      <div><h4 class="mono">Contact &amp; support</h4><ul><li><a href="#faqs">FAQs</a></li><li><a href="https://joinsolo.app/support" target="_blank" rel="noopener">Contact Support</a></li><li><span style="color:var(--solo-hi);font-size:14.5px;user-select:all">Support@joinsolo.app</span></li><li><span style="color:var(--solo-hi);font-size:14.5px;user-select:all">+353 85 785 0173</span></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 THE SOLO APP LTD. All rights reserved.</span>
+      <p>Registered in England and Wales. Company No. 16943454. Registered office: 4th Floor Office, 205 Regent Street, London W1B 4HB, United Kingdom.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+/* ---------- Ribbon of light ---------- */
+const cv=$('#flow'), ctx=cv.getContext('2d');
+let W=0,H=0,DPR=1,strands=[],dust=[];
+const COLORS=[[94,206,53],[94,206,53],[94,206,53],[164,236,116],[164,236,116],[110,231,183],[45,212,191],[96,165,250],[232,255,220]];
+// ribbon presets per section: bezier a,b,c,d (viewport fractions), spread, twist, knot, alpha
+const P={
+ hero:{a:[1.12,-.12],b:[.40,.30],c:[1.02,.52],d:[.52,1.18],s:.30,tw:6.0,k:.38,al:1},
+ verts:{a:[1.15,.18],b:[.62,-.05],c:[.30,.95],d:[-.15,.62],s:.20,tw:5,k:.55,al:.55},
+ problem:{a:[-.15,.15],b:[.38,.72],c:[.72,-.12],d:[1.18,.48],s:.26,tw:6.5,k:.45,al:.6},
+ trust:{a:[.55,-.2],b:[.02,.38],c:[1.0,.62],d:[.45,1.22],s:.34,tw:5.5,k:.5,al:.42},
+ morph:{a:[1.2,.1],b:[.6,.5],c:[.4,.5],d:[-.2,.9],s:.18,tw:4,k:.5,al:.35},
+ how:{a:[-.15,.92],b:[.32,.12],c:[.70,1.02],d:[1.15,.08],s:.22,tw:6,k:.5,al:.5},
+ duo:{a:[1.15,.95],b:[.7,.1],c:[.3,.9],d:[-.15,.05],s:.24,tw:5,k:.45,al:.45},
+ dash:{a:[1.15,.9],b:[.58,.28],c:[.18,.82],d:[-.15,-.05],s:.28,tw:6,k:.42,al:.42},
+ feats:{a:[-.1,-.1],b:[.6,.35],c:[.3,.7],d:[1.15,1.1],s:.26,tw:5.5,k:.5,al:.45},
+ nums:{a:[-.15,.6],b:[.35,.1],c:[.65,.95],d:[1.15,.4],s:.3,tw:7,k:.5,al:.6},
+ wait:{a:[1.12,-.1],b:[.25,.35],c:[.9,.7],d:[.2,1.15],s:.3,tw:6,k:.4,al:.5},
+ safety:{a:[.5,-.2],b:[.95,.4],c:[.05,.6],d:[.5,1.2],s:.32,tw:6,k:.5,al:.55},
+ faq:{a:[-.15,.3],b:[.3,.9],c:[.7,.1],d:[1.15,.7],s:.22,tw:5,k:.5,al:.4},
+ cta:{a:[1.15,.2],b:[.6,.9],c:[.3,.1],d:[-.15,.8],s:.28,tw:6,k:.5,al:.5},
+};
+const cur=JSON.parse(JSON.stringify(P.hero)); let target=P.hero;
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,1.6); W=innerWidth; H=innerHeight;
+  cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0);
+  const N = W<700?54:96; strands=[];
+  for(let i=0;i<N;i++){
+    const u=(i/(N-1))-.5, hero=Math.random()<.1;
+    strands.push({u:u+(Math.random()-.5)*.04,ph:Math.random()*Math.PI*2,sp:.4+Math.random()*.9,amp:2+Math.random()*7,
+      col:COLORS[(Math.random()*COLORS.length)|0],al:hero?.42+Math.random()*.25:.05+Math.random()*.2,lw:hero?1.3:.55+Math.random()*.7});
+  }
+  dust=[];for(let i=0;i<(W<700?40:80);i++)dust.push({t:Math.random(),u:(Math.random()-.5)*1.4,v:.01+Math.random()*.03,r:.4+Math.random()*1.4,a:.2+Math.random()*.6});
+}
+const bz=(p0,p1,p2,p3,t)=>{const m=1-t;return m*m*m*p0+3*m*m*t*p1+3*m*t*t*p2+t*t*t*p3};
+const bzd=(p0,p1,p2,p3,t)=>{const m=1-t;return 3*m*m*(p1-p0)+6*m*t*(p2-p1)+3*t*t*(p3-p2)};
+let mx=0,my=0,smx=0,smy=0,time=0,last=performance.now(),morphFade=1;
+addEventListener('pointermove',e=>{mx=e.clientX/W-.5;my=e.clientY/H-.5},{passive:true});
+const S=64, cx=new Float32Array(S+1),cy=new Float32Array(S+1),nx=new Float32Array(S+1),ny=new Float32Array(S+1),th=new Float32Array(S+1),fw=new Float32Array(S+1);
+function draw(){
+  ctx.globalCompositeOperation='source-over'; ctx.fillStyle='#040806'; ctx.fillRect(0,0,W,H);
+  const m=Math.min(W,H), sc=scrollY*.0009;
+  const ax=(cur.a[0])*W, ay=cur.a[1]*H, bx=(cur.b[0]+smx*.06+Math.sin(sc)*.04)*W, by=(cur.b[1]+smy*.05)*H,
+        ccx=(cur.c[0]-smx*.05+Math.cos(sc*1.3)*.04)*W, ccy=(cur.c[1]-smy*.04)*H, dx=cur.d[0]*W, dy=cur.d[1]*H;
+  const spread=cur.s*m*1.15, k=cur.k, kk=Math.max(k,1-k);
+  for(let j=0;j<=S;j++){
+    const t=j/S; cx[j]=bz(ax,bx,ccx,dx,t); cy[j]=bz(ay,by,ccy,dy,t);
+    let tx=bzd(ax,bx,ccx,dx,t), ty=bzd(ay,by,ccy,dy,t); const l=Math.hypot(tx,ty)||1; nx[j]=-ty/l; ny[j]=tx/l;
+    th[j]=t*cur.tw+time*.23; fw[j]=.08+.92*Math.pow(Math.abs(t-k)/kk,.85);
+  }
+  const A=cur.al*morphFade;
+  ctx.globalCompositeOperation='lighter';
+  // soft body glow
+  ctx.lineCap='round';
+  for(let g=0;g<3;g++){
+    ctx.beginPath(); for(let j=0;j<=S;j++){j?ctx.lineTo(cx[j],cy[j]):ctx.moveTo(cx[j],cy[j])}
+    ctx.strokeStyle=`rgba(94,206,53,${(.028-g*.007)*A})`; ctx.lineWidth=spread*(.35+g*.4); ctx.stroke();
+  }
+  // knot glow
+  const kj=Math.round(k*S), kgx=cx[kj], kgy=cy[kj], R=m*.42;
+  const rg=ctx.createRadialGradient(kgx,kgy,0,kgx,kgy,R); rg.addColorStop(0,`rgba(164,236,116,${.22*A})`); rg.addColorStop(.35,`rgba(94,206,53,${.08*A})`); rg.addColorStop(1,'rgba(94,206,53,0)');
+  ctx.fillStyle=rg; ctx.fillRect(kgx-R,kgy-R,R*2,R*2);
+  // strands
+  for(const s of strands){
+    ctx.beginPath();
+    for(let j=0;j<=S;j++){
+      const c=Math.cos(th[j]+s.u*1.4), off=spread*fw[j]*s.u*c + Math.sin(j*.22+time*s.sp+s.ph)*s.amp*fw[j];
+      const x=cx[j]+nx[j]*off, y=cy[j]+ny[j]*off; j?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.strokeStyle=`rgba(${s.col[0]},${s.col[1]},${s.col[2]},${s.al*A})`; ctx.lineWidth=s.lw; ctx.stroke();
+  }
+  // dust
+  for(const d of dust){
+    d.t+= d.v*.016*(RM?0:1); if(d.t>1)d.t-=1;
+    const jf=d.t*S, j=Math.min(S,Math.floor(jf));
+    const off=spread*fw[j]*d.u*.9; const x=cx[j]+nx[j]*off, y=cy[j]+ny[j]*off;
+    ctx.fillStyle=`rgba(200,255,170,${d.a*A*(.4+.6*Math.sin(time*2+d.u*9)**2)})`; ctx.beginPath(); ctx.arc(x,y,d.r,0,6.283); ctx.fill();
+  }
+}
+const flowSecs=$$('[data-flow]');
+function pickTarget(){
+  const mid=innerHeight*.5; let best=null;
+  for(const s of flowSecs){const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>=mid){best=s;break}}
+  if(best&&P[best.dataset.flow]) target=P[best.dataset.flow];
+}
+function step(now){
+  const dt=Math.min(.05,(now-last)/1000); last=now;
+  if(!document.hidden){
+    time+=dt*(RM?0:1);
+    const e=RM?1:Math.min(1,dt*1.6);
+    for(const key of ['s','tw','k','al']) cur[key]+= (target[key]-cur[key])*e;
+    for(const key of ['a','b','c','d']) for(let i=0;i<2;i++) cur[key][i]+=(target[key][i]-cur[key][i])*e;
+    smx+=(mx-smx)*Math.min(1,dt*2); smy+=(my-smy)*Math.min(1,dt*2);
+    draw();
+  }
+  if(!RM) requestAnimationFrame(step);
+}
+resize(); addEventListener('resize',()=>{resize(); if(RM)draw()});
+
+/* ---------- Nav ---------- */
+const nav=$('#nav');
+const onScroll=()=>{nav.classList.toggle('scrolled',scrollY>12); pickTarget(); morph(); if(RM){for(const key of ['s','tw','k','al'])cur[key]=target[key];for(const key of ['a','b','c','d'])cur[key]=[...target[key]];draw()}};
+addEventListener('scroll',onScroll,{passive:true});
+const burger=$('#burger');
+burger.addEventListener('click',()=>{const o=document.body.classList.toggle('menu');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu')});
+$$('#sheet a').forEach(a=>a.addEventListener('click',()=>{document.body.classList.remove('menu');burger.setAttribute('aria-expanded','false')}));
+
+/* ---------- Reveal (only what starts below the fold) ---------- */
+const rvs=$$('.rv'); if(!RM){rvs.forEach(el=>{if(el.getBoundingClientRect().top>innerHeight*.92)el.classList.add('wait')})}
+const cmp=$('#compare'); if(cmp&&!RM&&cmp.getBoundingClientRect().top>innerHeight)cmp.classList.add('wait');
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  const el=e.target; const sibs=[...el.parentElement.children].filter(c=>c.classList.contains('rv'));
+  const i=Math.max(0,sibs.indexOf(el)); el.style.transitionDelay=(i%6)*70+'ms'; el.classList.remove('wait');
+  if(el===cmp){$$('.cmp-row',cmp).forEach((r,k)=>r.style.transitionDelay=(200+k*110)+'ms')}
+  io.unobserve(el)}})},{rootMargin:'0px 0px -8% 0px'});
+rvs.forEach(el=>io.observe(el));
+
+/* ---------- Counters & in-view effects ---------- */
+function countUp(el){const to=+el.dataset.count, dur=1400, t0=performance.now();
+  if(RM||to===0){el.textContent=to.toLocaleString('en-IE');return}
+  const f=n=>{const p=Math.min(1,(n-t0)/dur), v=Math.round(to*(1-Math.pow(1-p,3))); el.textContent=v.toLocaleString('en-IE'); if(p<1)requestAnimationFrame(f)}; requestAnimationFrame(f)}
+const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return; const el=e.target; el.classList.add('in');
+  $$('[data-count]',el).forEach(countUp);
+  $$('[data-h]',el).forEach((b,i)=>setTimeout(()=>b.style.height=b.dataset.h+'%',i*60));
+  $$('[data-w]',el).forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*120));
+  const r=$('#ringfg',el); if(r) r.style.strokeDashoffset=289*(1-.82);
+  io2.unobserve(el)})},{threshold:.25});
+$$('.io').forEach(el=>io2.observe(el));
+
+/* ---------- Rotating word ---------- */
+const rot=$$('#rot span'); let ri=0;
+if(!RM) setInterval(()=>{const a=rot[ri]; a.classList.remove('on'); a.classList.add('out'); ri=(ri+1)%rot.length; const b=rot[ri]; b.classList.remove('out'); b.classList.add('on'); setTimeout(()=>a.classList.remove('out'),700)},2600);
+
+/* ---------- Payment tracker ---------- */
+const pts=$$('#ptrack .pt'); let pi=0; if(!RM) setInterval(()=>{pi=(pi+1)%3; pts.forEach((p,i)=>p.classList.toggle('on',i<=pi))},1500);
+
+/* ---------- Hero AI search typing ---------- */
+const queries=[
+ {q:"Maths tutor near Douglas, Thursdays",r:[["AB","Aisling B. · Maths, Leaving Cert","1.2 km"],["CD","Conor D. · Maths & Physics","2.0 km"]]},
+ {q:"Bridal make-up trial, Dublin 4",r:[["NO","Niamh O. · Bridal make-up","Verified"],["LM","Laura M. · Editorial & bridal","Verified"]]},
+ {q:"End of tenancy clean in Cork",r:[["PK","Paula K. · Deep cleans","€90 fixed"],["TS","Tomás S. · Move-out cleans","€110 fixed"]]},
+];
+const qt=$('#qtext'), qr=$('#qres'); let qi=0;
+function renderRes(r){qr.innerHTML=r.map((x,i)=>`<div class="q-row"><span class="av ${i?'b':''}">${x[0]}</span>${x[1]}<em>${x[2]}</em></div>`).join('')}
+async function typeLoop(){
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  while(true){const {q,r}=queries[qi]; qr.style.opacity=.25;
+    for(let i=0;i<=q.length;i++){qt.textContent=q.slice(0,i); await sleep(38+Math.random()*40)}
+    renderRes(r); qr.style.opacity=1; await sleep(2600);
+    for(let i=q.length;i>=0;i--){qt.textContent=q.slice(0,i); await sleep(14)} qi=(qi+1)%queries.length; await sleep(300)}
+}
+qr.style.transition='opacity .4s';
+if(RM){qt.textContent=queries[0].q;renderRes(queries[0].r)}else typeLoop();
+// feature AI query rotation
+const aiq=$('#aiq'), aiList=['Personal trainer, early mornings','Photographer for a 30th, Saturday','Cleaner every second Friday']; let ai=0;
+if(!RM) setInterval(()=>{ai=(ai+1)%aiList.length; aiq.style.opacity=0; setTimeout(()=>{aiq.textContent=aiList[ai]; aiq.style.opacity=1},300)},3200); aiq.style.transition='opacity .3s';
+
+/* ---------- Hero parallax ---------- */
+const stage=$('#stage'), cards=$$('.card',stage);
+if(!RM&&matchMedia('(pointer:fine)').matches){addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;cards.forEach((c,i)=>{const d=(i+1)*5;c.style.transform=`translate(${x*-d}px,${y*-d}px)`})},{passive:true})}
+
+/* ---------- Tabs ---------- */
+const tabs=$$('.tab'), ind=$('#tabInd');
+function placeInd(btn){ind.style.width=btn.offsetWidth+'px'; ind.style.transform=`translateX(${btn.offsetLeft-5}px)`}
+tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);$('#'+x.getAttribute('aria-controls')).hidden=!on});placeInd(t);
+  const ol=$('#'+t.getAttribute('aria-controls')+' .steps'); ol.classList.remove('in'); requestAnimationFrame(()=>requestAnimationFrame(()=>ol.classList.add('in')))}));
+placeInd(tabs[0]); addEventListener('resize',()=>placeInd($('.tab[aria-selected="true"]')));
+document.fonts&&document.fonts.ready.then(()=>placeInd($('.tab[aria-selected="true"]')));
+
+/* ---------- Morph: panel expands, words light up, collapses into the logo's green "o" ---------- */
+const morphSec=$('#promise'), panel=$('#morphPanel'), copy=$('#morphCopy'), mlogo=$('#morphLogo'), mcap=$('#morphCap'), mtext=$('#morphText');
+// split words, keep serif span intact
+(function split(){const out=[];mtext.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(w=>{if(!w)return; if(/^\s+$/.test(w))out.push(document.createTextNode(w)); else{const s=document.createElement('span');s.className='w';s.textContent=w;out.push(s)}})} else {n.classList.add('w');out.push(n)}}); mtext.textContent=''; out.forEach(o=>mtext.appendChild(o))})();
+const words=$$('.w',mtext);
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function morph(){
+  if(RM) return;
+  const r=morphSec.getBoundingClientRect(), total=r.height-innerHeight, p=clamp(-r.top/total);
+  const vw=innerWidth, vh=innerHeight;
+  // logo geometry: green disc of the first "o" sits at (220,165) r≈35 in the 600×240 artwork
+  const L=Math.min(vw*.62,620), k=L/600, discX=vw/2-300*k+220*k-(-0), discY=vh/2-120*k+165*k, discD=70*k;
+  let w,h,cxp,cyp,rad;
+  const p1=ease(clamp(p/.26)), p3=ease(clamp((p-.74)/.2));
+  const margin=Math.min(28,vw*.04);
+  w=lerp(140,vw-margin*2,p1); h=lerp(140,vh-margin*2,p1); rad=lerp(36,32,p1); cxp=vw/2; cyp=vh/2;
+  if(p>.74){w=lerp(vw-margin*2,discD,p3); h=lerp(vh-margin*2,discD,p3); rad=lerp(32,discD/2,p3); cxp=lerp(vw/2,discX,p3); cyp=lerp(vh/2,discY,p3)}
+  const t=cyp-h/2, l=cxp-w/2;
+  panel.style.clipPath=`inset(${t}px ${vw-l-w}px ${vh-t-h}px ${l}px round ${rad}px)`;
+  copy.style.opacity=p<.74?clamp((p-.12)/.1):clamp(1-(p-.74)/.06);
+  copy.style.transform=`scale(${lerp(.92,1,p1)})`;
+  const wp=clamp((p-.28)/.42); const n=Math.floor(wp*(words.length+1)); words.forEach((el,i)=>el.classList.toggle('on',i<n));
+  // logo letters arrive as the disc lands
+  const lo=clamp((p-.86)/.1);
+  mlogo.style.width=L+'px'; mlogo.style.opacity=lo;
+  mlogo.style.transform=`translate(${vw/2-L/2}px,${vh/2-120*k}px) scale(${lerp(1.04,1,lo)})`;
+  mcap.style.top=(vh/2+120*k+28)+'px'; mcap.style.opacity=clamp((p-.9)/.08);
+  const inM=r.top<innerHeight*.5&&r.bottom>innerHeight*.5; morphFade = inM ? (p<.8 ? lerp(1,.3,clamp(p/.15)) : lerp(.3,1,clamp((p-.8)/.2))) : 1;
+}
+
+/* ---------- Waitlist form (front-end preview) ---------- */
+const form=$('#wlForm'), done=$('#done'), msg=$('#f-msg'), count=$('#count');
+msg.addEventListener('input',()=>count.textContent=msg.value.length+'/1000');
+$$('[data-role]').forEach(a=>a.addEventListener('click',()=>{const v=a.dataset.role; const r=$(`input[name=role][value="${v}"]`); if(r) r.checked=true}));
+function setErr(id,bad){$('#'+id).closest('.field').classList.toggle('err',bad); return bad}
+form.addEventListener('submit',e=>{e.preventDefault();
+  const name=$('#f-name').value.trim(), email=$('#f-email').value.trim(), city=$('#f-city').value;
+  const b1=setErr('f-name',name.length<2), b2=setErr('f-email',!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)), b3=setErr('f-city',!city);
+  if(b1||b2||b3){const f=$('.field.err .inp',form); f&&f.focus(); return}
+  const role=$('input[name=role]:checked').value;
+  $('#doneMsg').textContent=`Thanks, ${name.split(' ')[0]}. We'll email ${email} the moment Solo launches in ${city}${role!=='Customer'?', with early access for professionals':''}.`;
+  form.hidden=true; done.hidden=false; done.querySelector('h3').focus?.();
+});
+['f-name','f-email','f-city'].forEach(id=>$('#'+id).addEventListener('input',()=>$('#'+id).closest('.field').classList.remove('err')));
+$('#again').addEventListener('click',()=>{form.reset();count.textContent='0/1000';done.hidden=true;form.hidden=false;$('#f-name').focus()});
+
+/* ---------- Copy buttons ---------- */
+$$('.copybtn').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy;
+  const ok=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1600)};
+  try{navigator.clipboard.writeText(v).then(ok,()=>{selectNear(b)})}catch(e){selectNear(b)}}));
+function selectNear(b){const c=b.previousElementSibling; const r=document.createRange(); r.selectNodeContents(c); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected'}
+
+onScroll();
+if(RM){draw()} else requestAnimationFrame(step);
+})();
+</script>
+
+</body></html>
